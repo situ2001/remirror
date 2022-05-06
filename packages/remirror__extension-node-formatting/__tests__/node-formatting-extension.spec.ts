@@ -1,5 +1,5 @@
 import { extensionValidityTest, renderEditor } from 'jest-remirror';
-import { BulletListExtension } from '@remirror/extension-list';
+import { BulletListExtension } from 'remirror/extensions';
 
 import { NodeFormattingExtension } from '../';
 
