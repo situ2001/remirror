@@ -1398,7 +1398,6 @@ importers:
     specifiers:
       '@babel/runtime': ^7.13.10
       '@remirror/core': ^1.4.3
-      '@remirror/extension-list': ^1.2.22
       '@remirror/messages': ^1.0.6
       '@remirror/pm': ^1.0.18
     dependencies:
@@ -1406,7 +1405,6 @@ importers:
       '@remirror/core': link:../remirror__core
       '@remirror/messages': link:../remirror__messages
     devDependencies:
-      '@remirror/extension-list': link:../remirror__extension-list
       '@remirror/pm': link:../remirror__pm
 
   packages/remirror__extension-paragraph:
