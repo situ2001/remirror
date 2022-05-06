@@ -3,6 +3,7 @@ import {
   command,
   CommandFunction,
   extension,
+  ExtensionPriority,
   ExtensionTag,
   IdentifierSchemaAttributes,
   isEmptyArray,
@@ -207,12 +208,20 @@ export class NodeFormattingExtension extends PlainExtension<NodeFormattingOption
     return this.rightAlign()(props);
   }
 
-  @keyBinding({ shortcut: NamedShortcut.IncreaseIndent, command: 'increaseIndent' })
+  @keyBinding({
+    shortcut: NamedShortcut.IncreaseIndent,
+    command: 'increaseIndent',
+    priority: ExtensionPriority.Low,
+  })
   increaseIndentShortcut(props: KeyBindingProps): boolean {
     return this.increaseIndent()(props);
   }
 
-  @keyBinding({ shortcut: NamedShortcut.DecreaseIndent, command: 'decreaseIndent' })
+  @keyBinding({
+    shortcut: NamedShortcut.DecreaseIndent,
+    command: 'decreaseIndent',
+    priority: ExtensionPriority.High,
+  })
   decreaseIndentShortcut(props: KeyBindingProps): boolean {
     return this.decreaseIndent()(props);
   }

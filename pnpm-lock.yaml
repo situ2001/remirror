@@ -1400,6 +1400,7 @@ importers:
     specifiers:
       '@babel/runtime': ^7.13.10
       '@remirror/core': ^1.4.3
+      '@remirror/extension-list': ^1.2.22
       '@remirror/messages': ^1.0.6
       '@remirror/pm': ^1.0.18
     dependencies:
@@ -1407,6 +1408,7 @@ importers:
       '@remirror/core': link:../remirror__core
       '@remirror/messages': link:../remirror__messages
     devDependencies:
+      '@remirror/extension-list': link:../remirror__extension-list
       '@remirror/pm': link:../remirror__pm
 
   packages/remirror__extension-paragraph:
@@ -31323,7 +31325,7 @@ packages:
     resolution: {integrity: sha512-V50KMwwzqJV0NpZIZFwfOD5/lyny3WlSzRiXgA0G7VUnRlqttta1L6UQIHzd6EuBY/cHGfwTIck7w1yH6Q5zUw==}
 
   github.com/remirror/patch-package/13efcef0a4e1ba5a2db2a41f0385699520ee2d69:
-    resolution: {tarball: https://codeload.github.com/remirror/patch-package/tar.gz/13efcef0a4e1ba5a2db2a41f0385699520ee2d69}
+    resolution: {commit: 13efcef0a4e1ba5a2db2a41f0385699520ee2d69, repo: git+ssh://git@github.com/remirror/patch-package.git, type: git}
     name: patch-package
     version: 6.4.7
     engines: {npm: '>5'}
