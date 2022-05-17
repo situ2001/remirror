@@ -99,6 +99,7 @@
     "@remirror/extension-gap-cursor": "^1.0.20",
     "@remirror/extension-hard-break": "^1.0.20",
     "@remirror/extension-heading": "^1.0.21",
+    "@remirror/extension-highlight": "^1.0.1",
     "@remirror/extension-history": "^1.0.20",
     "@remirror/extension-horizontal-rule": "^1.0.21",
     "@remirror/extension-image": "^1.0.34",

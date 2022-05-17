@@ -370,6 +370,14 @@
     "gzip": true
   },
   {
+    "name": "@remirror/extension-highlight",
+    "limit": "5 KB",
+    "path": "packages/remirror__extension-highlight/dist/remirror-extension-highlight.browser.esm.js",
+    "ignore": ["@remirror/pm", "@remirror/core"],
+    "running": false,
+    "gzip": true
+  },
+  {
     "name": "@remirror/extension-history",
     "limit": "5 KB",
     "path": "packages/remirror__extension-history/dist/remirror-extension-history.browser.esm.js",

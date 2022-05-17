@@ -101,6 +101,9 @@
       "path": "../../remirror__extension-heading/src"
     },
     {
+      "path": "../../remirror__extension-highlight/src"
+    },
+    {
       "path": "../../remirror__extension-history/src"
     },
     {

@@ -21,6 +21,7 @@ export * from '@remirror/extension-font-size';
 export * from '@remirror/extension-gap-cursor';
 export * from '@remirror/extension-hard-break';
 export * from '@remirror/extension-heading';
+export * from '@remirror/extension-highlight';
 export * from '@remirror/extension-history';
 export * from '@remirror/extension-horizontal-rule';
 export * from '@remirror/extension-image';

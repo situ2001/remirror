@@ -252,6 +252,12 @@
       "path": "packages/remirror__extension-heading/src"
     },
     {
+      "path": "packages/remirror__extension-highlight/__tests__"
+    },
+    {
+      "path": "packages/remirror__extension-highlight/src"
+    },
+    {
       "path": "packages/remirror__extension-history/__tests__"
     },
     {
