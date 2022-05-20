@@ -12,7 +12,6 @@ import type {
   TransactionProps,
 } from '@remirror/core-types';
 import { InputRule } from '@remirror/pm/inputrules';
-import { NodeType } from '@remirror/pm/model';
 import { markActiveInRange } from '@remirror/pm/suggest';
 
 export interface BeforeDispatchProps extends TransactionProps {
