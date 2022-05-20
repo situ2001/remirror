@@ -314,7 +314,7 @@ export class RemirrorManager<Extension extends AnyExtension> {
    * commands will end up being non-chainable and be overwritten by anything
    * that comes after.
    */
-  get tr(): Transaction<GetSchema<Extension>> {
+  get tr(): Transaction {
     return this.getExtension(CommandsExtension).transaction;
   }
 
@@ -350,7 +350,7 @@ export class RemirrorManager<Extension extends AnyExtension> {
   /**
    * A shorthand way of retrieving the editor view.
    */
-  get view(): EditorView<GetSchema<Extension>> {
+  get view(): EditorView {
     return this.#store.view;
   }
 
@@ -542,7 +542,7 @@ export class RemirrorManager<Extension extends AnyExtension> {
    *
    * @param view - the editor view
    */
-  addView(view: EditorView<this['~Sch']>): this {
+  addView(view: EditorView): this {
     if (this.#phase >= ManagerPhase.EditorView) {
       // Do nothing since a view has already been added.
       return this;
@@ -604,7 +604,7 @@ export class RemirrorManager<Extension extends AnyExtension> {
    * This can be used in conjunction with the create state to reset the current
    * value of the editor.
    */
-  createEmptyDoc(): ProsemirrorNode<GetSchema<Extension>> {
+  createEmptyDoc(): ProsemirrorNode {
     const doc = this.schema.nodes.doc?.createAndFill();
 
     // Make sure the `doc` was created.
@@ -619,7 +619,7 @@ export class RemirrorManager<Extension extends AnyExtension> {
   /**
    * Create the editor state from content passed to this extension manager.
    */
-  createState(props: CreateEditorStateProps = {}): EditorState<GetSchema<Extension>> {
+  createState(props: CreateEditorStateProps = {}): EditorState {
     const { onError, defaultSelection = 'end' } = this.settings;
     const {
       content = this.createEmptyDoc(),
@@ -658,7 +658,7 @@ export class RemirrorManager<Extension extends AnyExtension> {
    * Update the state of the view and trigger the `onStateUpdate` lifecycle
    * method as well.
    */
-  private readonly updateState = (state: EditorState<this['~Sch']>) => {
+  private readonly updateState = (state: EditorState) => {
     const previousState = this.getState();
 
     this.view.updateState(state);
@@ -964,7 +964,7 @@ export interface RemirrorManager<Extension extends AnyExtension> {
    *
    * @internal
    */
-  ['~Sch']: GetSchema<Extension>;
+  ['~Sch']: GetSchema;
 
   /**
    * `AllNames`
@@ -1097,7 +1097,7 @@ declare global {
       /**
        * The editor view stored by this instance.
        */
-      view: EditorView<GetSchema<Extension>>;
+      view: EditorView;
     }
 
     interface ExtensionStore {
@@ -1125,12 +1125,12 @@ declare global {
       /**
        * The latest state.
        */
-      currentState: EditorState<EditorSchema>;
+      currentState: EditorState;
 
       /**
        * The previous state. Will be undefined when the view is first created.
        */
-      previousState?: EditorState<EditorSchema>;
+      previousState?: EditorState;
 
       /**
        * The root document to be used for the editor. This is mainly used for
@@ -1172,7 +1172,7 @@ declare global {
       /**
        * A helper method for retrieving the state of the editor
        */
-      readonly getState: () => EditorState<EditorSchema>;
+      readonly getState: () => EditorState;
 
       /**
        * Allow extensions to trigger an update in the prosemirror state. This
@@ -1182,7 +1182,7 @@ declare global {
        * Internally it's used by the [[`PluginsExtension`]] to create a new
        * state when the plugins are updated at runtime.
        */
-      readonly updateState: (state: EditorState<EditorSchema>) => void;
+      readonly updateState: (state: EditorState) => void;
 
       /**
        * Get the extension instance matching the provided constructor from the

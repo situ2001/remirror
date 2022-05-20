@@ -137,7 +137,7 @@ export class PluginsExtension extends PlainExtension<PluginsOptions> {
    * Create a plugin which adds the [[`onInitState`]] and [[`onApplyState`]]
    * lifecycle methods.
    */
-  createPlugin(): CreateExtensionPlugin<void> {
+  createPlugin(): CreateExtensionPlugin {
     return {
       appendTransaction: (transactions, previousState, state) => {
         const tr = state.tr;

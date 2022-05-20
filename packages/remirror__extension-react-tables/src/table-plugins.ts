@@ -71,12 +71,12 @@ export function getTableStyle(attrs: ControllerStateValues): string {
   return classNames;
 }
 
-const key = new PluginKey<ControllerState>('remirrorTableControllerPluginKey');
+const key = new PluginKey('remirrorTableControllerPluginKey');
 
 export { key as tableControllerPluginKey };
 
-export function createTableControllerPlugin(): ProsemirrorPlugin<ControllerState> {
-  return new Plugin<ControllerState>({
+export function createTableControllerPlugin(): ProsemirrorPlugin {
+  return new Plugin({
     key: key,
     state: {
       init() {

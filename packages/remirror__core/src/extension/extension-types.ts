@@ -330,11 +330,10 @@ export type GetNodeNameUnion<
 
 /**
  * Gets the editor schema from an extension union.
+ *
+ * @deprecated We don't add Schema to generic types anymore.
  */
-export type GetSchema<Extension extends AnyExtension> = EditorSchema<
-  LiteralUnion<GetNodeNameUnion<Extension>, string>,
-  LiteralUnion<GetMarkNameUnion<Extension>, string>
->;
+export type GetSchema = EditorSchema;
 
 declare global {
   namespace Remirror {

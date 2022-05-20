@@ -339,49 +339,59 @@ export class EventsExtension extends PlainExtension<EventsOptions> {
 
         handleDOMEvents: {
           focus: (_, event) => {
+            // @ts-expect-error WIP
             return this.options.focus(event) || false;
           },
 
           blur: (_, event) => {
+            // @ts-expect-error WIP
             return this.options.blur(event) || false;
           },
 
           mousedown: (_, event) => {
             this.startMouseover();
+            // @ts-expect-error WIP
             return this.options.mousedown(event) || false;
           },
 
           mouseup: (_, event) => {
             this.endMouseover();
+            // @ts-expect-error WIP
             return this.options.mouseup(event) || false;
           },
 
           mouseleave: (_, event) => {
             this.mouseover = false;
+            // @ts-expect-error WIP
             return this.options.mouseleave(event) || false;
           },
 
           mouseenter: (_, event) => {
             this.mouseover = true;
+            // @ts-expect-error WIP
             return this.options.mouseenter(event) || false;
           },
 
           keyup: (_, event) => {
+            // @ts-expect-error WIP
             return this.options.keyup(event) || false;
           },
 
+          // @ts-expect-error WIP
           mouseout: this.createMouseEventHandler((event, props) => {
             const state = { ...props, hovering: false };
             // TODO: Standardise to return ONLY the event, as first argument
             return this.options.hover({ ...state, event }, state) || false;
           }),
 
+          // @ts-expect-error WIP
           mouseover: this.createMouseEventHandler((event, props) => {
             const state = { ...props, hovering: true };
             // TODO: Standardise to return ONLY the event, as first argument
             return this.options.hover({ ...state, event }, state) || false;
           }),
 
+          // @ts-expect-error WIP
           contextmenu: this.createMouseEventHandler((event, props) => {
             // TODO: Standardise to return ONLY the event, as first argument
             return this.options.contextmenu({ ...props, event }, props) || false;
@@ -392,10 +402,12 @@ export class EventsExtension extends PlainExtension<EventsOptions> {
           },
 
           copy: (_, event) => {
+            // @ts-expect-error WIP
             return this.options.copy(event) || false;
           },
 
           paste: (_, event) => {
+            // @ts-expect-error WIP
             return this.options.paste(event) || false;
           },
         },

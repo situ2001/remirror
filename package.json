@@ -232,6 +232,13 @@
   },
   "pnpm": {
     "overrides": {
+      "prosemirror-model": "beta",
+      "prosemirror-transform": "beta",
+      "prosemirror-keymap": "beta",
+      "prosemirror-schema-basic": "beta",
+      "prosemirror-schema-list": "beta",
+      "prosemirror-state": "beta",
+      "prosemirror-view": "beta",
       "postcss": ">= 8.0.0"
     }
   },
@@ -256,7 +263,6 @@
       {
         "groupName": "prosemirror packages",
         "matchPackagePatterns": [
-          "@types/prosemirror.*",
           "^prosemirror.*"
         ],
         "rangeStrategy": "bump",

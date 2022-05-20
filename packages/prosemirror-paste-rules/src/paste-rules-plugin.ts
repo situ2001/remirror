@@ -16,7 +16,7 @@ import { findMatches, includes, isFunction, range, sort } from '@remirror/core-h
 /**
  * Create the paste plugin handler.
  */
-export function pasteRules(pasteRules: PasteRule[]): Plugin<void> {
+export function pasteRules(pasteRules: PasteRule[]): Plugin {
   const sortedPasteRules = sort(
     pasteRules,
     (a, z) => (z.priority ?? ExtensionPriority.Low) - (a.priority ?? ExtensionPriority.Low),
@@ -120,6 +120,7 @@ export function pasteRules(pasteRules: PasteRule[]): Plugin<void> {
             return false;
           }
 
+          // @ts-expect-error WIP
           const { clipboardData } = event;
 
           if (!clipboardData) {
@@ -143,6 +144,7 @@ export function pasteRules(pasteRules: PasteRule[]): Plugin<void> {
               continue;
             }
 
+            // @ts-expect-error WIP
             if (fileHandler({ event, files, selection, view, type: 'paste' })) {
               event.preventDefault();
               return true;
@@ -158,12 +160,14 @@ export function pasteRules(pasteRules: PasteRule[]): Plugin<void> {
             return false;
           }
 
+          // @ts-expect-error WIP
           const { dataTransfer, clientX, clientY } = event;
 
           if (!dataTransfer) {
             return false;
           }
 
+          // @ts-expect-error WIP
           const allFiles = getDataTransferFiles(event);
 
           if (allFiles.length === 0) {
@@ -180,6 +184,7 @@ export function pasteRules(pasteRules: PasteRule[]): Plugin<void> {
               continue;
             }
 
+            // @ts-expect-error WIP
             if (fileHandler({ event, files, pos, view, type: 'drop' })) {
               event.preventDefault();
               return true;

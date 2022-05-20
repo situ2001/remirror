@@ -3,7 +3,6 @@ import type {
   AnyConstructor,
   AnyFunction,
   CommandFunction,
-  EditorSchema,
   EditorState,
   EditorStateProps,
   Except,
@@ -187,7 +186,7 @@ export interface AppendLifecycleProps extends EditorStateProps {
   /**
    * The transactions that have already been applied.
    */
-  transactions: Transaction[];
+  transactions: Transaction[] | readonly Transaction[];
 }
 
 export interface StateUpdateLifecycleProps extends EditorStateProps {
@@ -225,7 +224,7 @@ export interface StateUpdateLifecycleProps extends EditorStateProps {
    *
    * This is for advanced users only, and I personally have never needed it.
    */
-  transactions?: Transaction[];
+  transactions?: readonly Transaction[];
 }
 
 export interface BaseExtensionOptions extends Remirror.BaseExtensionOptions {
@@ -340,8 +339,7 @@ declare global {
 /**
  * An interface for creating custom plugins in your `remirror` editor.
  */
-export interface CreateExtensionPlugin<PluginState = any>
-  extends Except<PluginSpec<PluginState, EditorSchema>, 'key'> {}
+export interface CreateExtensionPlugin extends Except<PluginSpec, 'key'> {}
 
 /**
  * A helper interface for creating strongly typed decorators.

@@ -1218,7 +1218,7 @@ declare global {
       /**
        * The schema created by this extension manager.
        */
-      schema: GetSchema<Extension>;
+      schema: GetSchema;
 
       /**
        * The name of the default block node. This is used by all internal

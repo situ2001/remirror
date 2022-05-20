@@ -8,10 +8,10 @@ interface UploadPlaceholderPluginData {
   payloads: Map<string, any>;
 }
 
-const key = new PluginKey<UploadPlaceholderPluginData>('remirroFilePlaceholderPlugin');
+const key = new PluginKey('remirroFilePlaceholderPlugin');
 
-export function createUploadPlaceholderPlugin(): Plugin<UploadPlaceholderPluginData> {
-  return new Plugin<UploadPlaceholderPluginData>({
+export function createUploadPlaceholderPlugin(): Plugin {
+  const plugin: Plugin = new Plugin({
     key: key,
     state: {
       init(): UploadPlaceholderPluginData {
@@ -21,15 +21,17 @@ export function createUploadPlaceholderPlugin(): Plugin<UploadPlaceholderPluginD
         // Adjust decoration positions to changes made by the transaction
         set = set.map(tr.mapping, tr.doc);
         // See if the transaction adds or removes any placeholders
-        const action = tr.getMeta(this) as PlaceholderPluginAction | null;
+        const action = tr.getMeta(plugin) as PlaceholderPluginAction | null;
 
         if (action) {
           if (action.type === ActionType.ADD_PLACEHOLDER) {
             const widget = document.createElement('placeholder');
+            // @ts-expect-error: WIP
             const deco = Decoration.widget(action.pos, widget, { id: action.id });
             set = set.add(tr.doc, [deco]);
             payloads.set(action.id, action.payload);
           } else if (action.type === ActionType.REMOVE_PLACEHOLDER) {
+            // @ts-expect-error: WIP
             set = set.remove(set.find(undefined, undefined, (spec) => spec.id === action.id));
             payloads.delete(action.id);
           }
@@ -40,10 +42,11 @@ export function createUploadPlaceholderPlugin(): Plugin<UploadPlaceholderPluginD
     },
     props: {
       decorations(state) {
-        return this.getState(state).set;
+        return plugin.getState(state).set;
       },
     },
   });
+  return plugin;
 }
 
 /**
@@ -59,7 +62,7 @@ export function createUploadPlaceholderPlugin(): Plugin<UploadPlaceholderPluginD
  * document.
  */
 export function findUploadPlaceholderPos(state: EditorState, id: string): number | undefined {
-  const set = key.getState(state)?.set;
+  const set = (key.getState(state) as UploadPlaceholderPluginData)?.set;
 
   if (set) {
     const decos = set.find(undefined, undefined, (spec) => spec.id === id);

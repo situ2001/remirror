@@ -4,7 +4,6 @@ import type {
   AcceptUndefined,
   CommandFunction,
   CommandFunctionProps,
-  EditorSchema,
   EditorState,
   EditorView,
   FromToProps,
@@ -14,7 +13,7 @@ import type {
   Transaction,
 } from '@remirror/core-types';
 import { findNodeAtPosition, isNodeSelection } from '@remirror/core-utils';
-import { Decoration, DecorationSet, WidgetDecorationSpec } from '@remirror/pm/view';
+import { Decoration, DecorationSet } from '@remirror/pm/view';
 
 import { DelayedCommand, DelayedPromiseCreator } from '../commands';
 import { extension, Helper, PlainExtension } from '../extension';
@@ -73,6 +72,7 @@ export interface DecorationsOptions {
     decorations: {
       reducer: {
         accumulator: (accumulated, latestValue, state) => {
+          // @ts-expect-error: WIP
           return accumulated.add(state.doc, latestValue.find());
         },
         getDefault: () => DecorationSet.empty,
@@ -94,13 +94,7 @@ export class DecorationsExtension extends PlainExtension<DecorationsOptions> {
   /**
    * A map of the html elements to their decorations.
    */
-  private readonly placeholderWidgets = new Map<
-    unknown,
-    Decoration<
-      WidgetDecorationSpec &
-        Pick<WidgetPlaceholder, 'onDestroy' | 'onUpdate' | 'data'> & { element: HTMLElement }
-    >
-  >();
+  private readonly placeholderWidgets = new Map<unknown, Decoration>();
 
   onCreate(): void {
     this.store.setExtensionStore('createPlaceholderCommand', this.createPlaceholderCommand);
@@ -196,6 +190,7 @@ export class DecorationsExtension extends PlainExtension<DecorationsOptions> {
               widget.spec.onDestroy?.(this.store.view, widget.spec.element);
             }
 
+            // @ts-expect-error WIP
             this.placeholders = this.placeholders.remove(found);
             this.placeholderWidgets.delete(id);
           }
@@ -204,6 +199,7 @@ export class DecorationsExtension extends PlainExtension<DecorationsOptions> {
       props: {
         decorations: (state) => {
           let decorationSet = this.options.decorations(state);
+          // @ts-expect-error WIP
           decorationSet = decorationSet.add(state.doc, this.placeholders.find());
 
           for (const extension of this.store.extensions) {
@@ -213,6 +209,7 @@ export class DecorationsExtension extends PlainExtension<DecorationsOptions> {
             }
 
             const decorations = extension.createDecorations(state).find();
+            // @ts-expect-error WIP
             decorationSet = decorationSet.add(state.doc, decorations);
           }
 
@@ -381,6 +378,7 @@ export class DecorationsExtension extends PlainExtension<DecorationsOptions> {
     const element = createElement?.(this.store.view, pos) ?? document.createElement(nodeName);
     element.classList.add(className);
     const decoration = Decoration.widget(pos, element, {
+      // @ts-expect-error WIP
       id,
       __type,
       type,
@@ -411,10 +409,25 @@ export class DecorationsExtension extends PlainExtension<DecorationsOptions> {
       // Add this as a widget if the range is empty.
       const element = document.createElement(nodeName);
       element.classList.add(className);
-      decoration = Decoration.widget(from, element, { id, type, __type, widget: element });
+      decoration = Decoration.widget(from, element, {
+        // @ts-expect-error WIP
+        id,
+        type,
+        __type,
+        widget: element,
+      });
     } else {
       // Make this span across nodes if the range is not empty.
-      decoration = Decoration.inline(from, to, { nodeName, class: className }, { id, __type });
+      decoration = Decoration.inline(
+        from,
+        to,
+        { nodeName, class: className },
+        {
+          // @ts-expect-error WIP
+          id,
+          __type,
+        },
+      );
     }
 
     this.placeholders = this.placeholders.add(tr.doc, [decoration]);
@@ -778,7 +791,7 @@ export interface DelayedPlaceholderCommandProps<Value> {
   /**
    * Called when a failure is encountered.
    */
-  onFailure?: CommandFunction<EditorSchema, { error: any }>;
+  onFailure?: CommandFunction<{ error: any }>;
 }
 
 declare global {

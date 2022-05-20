@@ -199,7 +199,7 @@ export class CodeBlockExtension extends NodeExtension<CodeBlockOptions> {
   /**
    * Create the custom code block plugin which handles the delete key amongst other things.
    */
-  createPlugin(): CreateExtensionPlugin<CodeBlockState> {
+  createPlugin(): CreateExtensionPlugin {
     const pluginState = new CodeBlockState(this.type, this);
 
     /**

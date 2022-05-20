@@ -45,6 +45,7 @@ export class NodeViewsExtension extends PlainExtension {
     }
 
     return {
+      // @ts-expect-error WIP
       props: { nodeViews },
     };
   }

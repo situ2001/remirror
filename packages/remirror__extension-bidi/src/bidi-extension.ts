@@ -114,7 +114,7 @@ export class BidiExtension extends PlainExtension<BidiOptions> {
    * Create the plugin that ensures the node has the correct `dir` value on each
    * state update.
    */
-  createPlugin(): CreateExtensionPlugin<boolean> {
+  createPlugin(): CreateExtensionPlugin {
     return {
       state: {
         init: () => false,

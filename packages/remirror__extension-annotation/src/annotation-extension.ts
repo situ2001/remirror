@@ -84,7 +84,7 @@ export class AnnotationExtension<Type extends Annotation = Annotation> extends P
    * Create the custom code block plugin which handles the delete key amongst
    * other things.
    */
-  createPlugin(): CreateExtensionPlugin<AnnotationState<Type>> {
+  createPlugin(): CreateExtensionPlugin {
     let store: AnnotationStore<Type>;
 
     if (this.options.getMap) {
@@ -115,6 +115,7 @@ export class AnnotationExtension<Type extends Annotation = Annotation> extends P
       },
       props: {
         decorations(state: EditorState) {
+          // @ts-expect-error: WIP
           return this.getState(state).decorationSet;
         },
       },

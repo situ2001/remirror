@@ -160,7 +160,7 @@ export function markInputRule(props: MarkInputRuleProps): SkippableInputRule {
       });
     }
 
-    let captureGroup = match[1];
+    let captureGroup: string | undefined = match[1];
     let fullMatch = match[0];
 
     // These are the attributes which are added to the mark and they can be
@@ -186,7 +186,7 @@ export function markInputRule(props: MarkInputRuleProps): SkippableInputRule {
 
     const attributes = isFunction(getAttributes) ? getAttributes(match) : getAttributes;
     let markEnd = end;
-    let initialStoredMarks: Mark[] = [];
+    let initialStoredMarks: readonly Mark[] = [];
 
     if (captureGroup) {
       const startSpaces = fullMatch.search(/\S/);
@@ -245,9 +245,9 @@ export function nodeInputRule(props: NodeInputRuleProps): SkippableInputRule {
   const rule: SkippableInputRule = new InputRule(regexp, (state, match, start, end) => {
     const attributes = isFunction(getAttributes) ? getAttributes(match) : getAttributes;
     const { tr, schema } = state;
-    const nodeType: NodeType = isString(type) ? schema.nodes[type] : type;
+    const nodeType = isString(type) ? schema.nodes[type] : type;
 
-    let captureGroup = match[1];
+    let captureGroup: string | undefined = match[1];
     let fullMatch = match[0];
 
     // These are the attributes which are added to the mark and they can be
@@ -312,7 +312,7 @@ export function plainInputRule(props: PlainInputRuleProps): SkippableInputRule {
     }
 
     const { tr, schema } = state;
-    let captureGroup = match[1];
+    let captureGroup: string | undefined = match[1];
     let fullMatch = match[0];
 
     // These are the attributes which are added to the mark and they can be

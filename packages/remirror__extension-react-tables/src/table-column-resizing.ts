@@ -7,7 +7,7 @@
 // Copyright (C) 2015-2020 by Marijn Haverbeke <marijnh@gmail.com> and others
 //
 
-import { EditorState, EditorView, ResolvedPos, Transaction } from '@remirror/pm';
+import { EditorState, EditorView, ResolvedPos, Transaction, ProsemirrorNode } from '@remirror/pm';
 import { Plugin, PluginKey } from '@remirror/pm/state';
 import {
   cellAround,
@@ -21,7 +21,7 @@ import { TableView } from './views/table-view';
 type Dragging = { startX: number; startWidth: number };
 
 // TODO: https://github.com/ProseMirror/prosemirror-tables/pull/131
-export function pointsAtCell($pos: ResolvedPos) {
+export function pointsAtCell($pos: ResolvedPos): false | null | ProsemirrorNode {
   return $pos.parent.type.spec.tableRole == 'row' && $pos.nodeAfter;
 }
 
