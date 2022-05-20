@@ -1767,7 +1767,7 @@ importers:
       prosemirror-collab: ^1.3.0-beta.1
       prosemirror-commands: ^1.3.0-beta.1
       prosemirror-dropcursor: ^1.5.0-beta.1
-      prosemirror-gapcursor: ^1.3.0-beta.1
+      prosemirror-gapcursor: ^1.3.0-beta.2
       prosemirror-history: ^1.3.0-beta.1
       prosemirror-inputrules: ^1.2.0-beta.1
       prosemirror-keymap: beta
@@ -1787,7 +1787,7 @@ importers:
       prosemirror-collab: 1.3.0-beta.1
       prosemirror-commands: 1.3.0-beta.1
       prosemirror-dropcursor: 1.5.0-beta.1
-      prosemirror-gapcursor: 1.3.0-beta.1
+      prosemirror-gapcursor: 1.3.0-beta.2
       prosemirror-history: 1.3.0-beta.1
       prosemirror-inputrules: 1.2.0-beta.1
       prosemirror-keymap: 1.2.0-beta.1
@@ -25721,8 +25721,8 @@ packages:
       prosemirror-view: 1.24.0-beta.1
     dev: false
 
-  /prosemirror-gapcursor/1.3.0-beta.1:
-    resolution: {integrity: sha512-M7ARgiTA4BkEz95HP+TDtskcYhZG/f8c/V5bvoWYYKovHbX8o8nYTNWxhtcEsB4AIc+bMBIShKMQpWEQteQ74w==}
+  /prosemirror-gapcursor/1.3.0-beta.2:
+    resolution: {integrity: sha512-x64DC4QSs55JKhYFcCZ4C9vdcyMVBR8uh0UcCN8qjJ2yYSIFh0t+rGgeLp9lGbwi1Hoq/PgaIZZYI/kqj/EvEg==}
     dependencies:
       prosemirror-keymap: 1.2.0-beta.1
       prosemirror-model: 1.17.0-beta.1
