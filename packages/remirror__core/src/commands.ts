@@ -263,11 +263,7 @@ export function toggleMark(props: ToggleMarkProps): CommandFunction {
 /**
  * Verifies that the mark type can be applied to the current document.
  */
-function markApplies(
-  type: MarkType,
-  doc: ProsemirrorNode,
-  ranges: SelectionRange[] | readonly SelectionRange[],
-) {
+function markApplies(type: MarkType, doc: ProsemirrorNode, ranges: readonly SelectionRange[]) {
   for (const { $from, $to } of ranges) {
     let markIsAllowed = $from.depth === 0 ? doc.type.allowsMarkType(type) : false;
 

@@ -186,7 +186,7 @@ export interface AppendLifecycleProps extends EditorStateProps {
   /**
    * The transactions that have already been applied.
    */
-  transactions: Transaction[] | readonly Transaction[];
+  transactions: readonly Transaction[];
 }
 
 export interface StateUpdateLifecycleProps extends EditorStateProps {
