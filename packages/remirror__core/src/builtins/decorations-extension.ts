@@ -72,7 +72,6 @@ export interface DecorationsOptions {
     decorations: {
       reducer: {
         accumulator: (accumulated, latestValue, state) => {
-          // @ts-expect-error: WIP
           return accumulated.add(state.doc, latestValue.find());
         },
         getDefault: () => DecorationSet.empty,
@@ -190,7 +189,6 @@ export class DecorationsExtension extends PlainExtension<DecorationsOptions> {
               widget.spec.onDestroy?.(this.store.view, widget.spec.element);
             }
 
-            // @ts-expect-error WIP
             this.placeholders = this.placeholders.remove(found);
             this.placeholderWidgets.delete(id);
           }
@@ -199,7 +197,6 @@ export class DecorationsExtension extends PlainExtension<DecorationsOptions> {
       props: {
         decorations: (state) => {
           let decorationSet = this.options.decorations(state);
-          // @ts-expect-error WIP
           decorationSet = decorationSet.add(state.doc, this.placeholders.find());
 
           for (const extension of this.store.extensions) {
@@ -209,7 +206,6 @@ export class DecorationsExtension extends PlainExtension<DecorationsOptions> {
             }
 
             const decorations = extension.createDecorations(state).find();
-            // @ts-expect-error WIP
             decorationSet = decorationSet.add(state.doc, decorations);
           }
 

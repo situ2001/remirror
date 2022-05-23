@@ -31,7 +31,6 @@ export function createUploadPlaceholderPlugin(): Plugin {
             set = set.add(tr.doc, [deco]);
             payloads.set(action.id, action.payload);
           } else if (action.type === ActionType.REMOVE_PLACEHOLDER) {
-            // @ts-expect-error: WIP
             set = set.remove(set.find(undefined, undefined, (spec) => spec.id === action.id));
             payloads.delete(action.id);
           }

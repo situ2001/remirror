@@ -101,7 +101,6 @@ export class CodeBlockState {
     let decorationSet = this.decorationSet;
 
     for (const { node, pos } of blocks) {
-      // @ts-expect-error WIP
       decorationSet = this.decorationSet.remove(this.decorationSet.find(pos, pos + node.nodeSize));
     }
 
