@@ -36,7 +36,7 @@ describe('keybindings with list extensions', () => {
     attributeNodes: { paragraph: p },
   } = editor;
 
-  it('can increase and decrease indent', () => {
+  it('ignore the indentation keybindings in list items', () => {
     const doc1 = doc(
       ul(
         //
@@ -63,33 +63,15 @@ describe('keybindings with list extensions', () => {
       ),
     );
 
-    const doc3 = doc(
-      ul(
-        //
-        li(p()('A')),
-        li(
-          //
-          p()('B'),
-          ul(
-            //
-            li(p({ nodeIndent: 1 })('C<cursor>')),
-          ),
-        ),
-        li(p()('D')),
-      ),
-    );
-
     editor.add(doc1);
 
-    // List indent should has higher priority than node formatting indent.
     editor.press('Tab');
     expect(editor.state.doc).toEqualRemirrorDocument(doc2);
     editor.press('Tab');
-    expect(editor.state.doc).toEqualRemirrorDocument(doc3);
+    expect(editor.state.doc).toEqualRemirrorDocument(doc2);
+    editor.press('Tab');
+    expect(editor.state.doc).toEqualRemirrorDocument(doc2);
 
-    // List dedent should has lower priority than node formatting dedent.
-    editor.press('Shift-Tab');
-    expect(editor.state.doc).toEqualRemirrorDocument(doc2);
     editor.press('Shift-Tab');
     expect(editor.state.doc).toEqualRemirrorDocument(doc1);
   });
