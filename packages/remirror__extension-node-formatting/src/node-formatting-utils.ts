@@ -1,10 +1,14 @@
 import {
   clamp,
   EditorState,
+  ExtensionTag,
   extractPixelSize,
+  findParentNode,
   isNumber,
   last,
   NodeWithPosition,
+  ProsemirrorNode,
+  Selection,
   Shape,
   Static,
   Transaction,
@@ -149,4 +153,15 @@ export function extractLineHeight(lineHeight: string | number | null): number | 
   }
 
   return null;
+}
+
+export function isInListItem(selection: Selection): boolean {
+  return !!findParentNode({
+    selection,
+    predicate: isListItemNode,
+  });
+}
+
+function isListItemNode(node: ProsemirrorNode): boolean {
+  return !!node.type.spec.group?.includes(ExtensionTag.ListItemNode);
 }
